@@ -70,6 +70,11 @@ abstract class BaseMvvmController<VM : BaseViewModel<S>, S : Mvvm.State> : Contr
 
     }
 
+    override fun onDetach(view: View) {
+        super.onDetach(view)
+        disposeDisposables()
+    }
+
 
     // Release the View Model Store
     override fun onDestroy() {
