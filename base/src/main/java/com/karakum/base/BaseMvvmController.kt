@@ -20,7 +20,7 @@ abstract class BaseMvvmController<VM : BaseViewModel<S>, S : Mvvm.State> : Contr
 
     private var compositeDisposable: CompositeDisposable? = null
 
-    open val context: Context = activity!!
+    open val context: Context get() = activity!!
 
     abstract val viewModel: VM
 
