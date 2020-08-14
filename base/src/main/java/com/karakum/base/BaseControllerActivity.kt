@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_controller.*
  */
 abstract class BaseControllerActivity : AppCompatActivity() {
 
-    lateinit var router: Router
+    protected lateinit var router: Router
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
