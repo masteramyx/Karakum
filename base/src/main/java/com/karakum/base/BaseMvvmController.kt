@@ -1,5 +1,6 @@
 package com.karakum.base
 
+import android.content.Context
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -9,17 +10,19 @@ import com.bluelinelabs.conductor.Controller
 import com.karakum.IObservableSchedulerRx2
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import java.lang.IllegalStateException
 
 /**
  * Base Mvvm Controller of types ViewModel and State. Handle StateChange via Rx
- * Stolen from DUET
  */
 abstract class BaseMvvmController<VM : BaseViewModel<S>, S : Mvvm.State> : Controller(),
     ViewModelStoreOwner {
 
 
     private var compositeDisposable: CompositeDisposable? = null
+
+    open val context: Context = activity!!
+
+    abstract val viewModel: VM
 
 
     protected fun addToDisposables(disposable: Disposable) {
@@ -36,9 +39,6 @@ abstract class BaseMvvmController<VM : BaseViewModel<S>, S : Mvvm.State> : Contr
             compositeDisposable = null
         }
     }
-
-    abstract val viewModel: VM
-
 
     // Container to hold the view models, android handles lifecycle stuff. As per description, if owner is destroyed
     // and recreated via configuration the new instance of owner will have same old instance of [ViewModelStore]
