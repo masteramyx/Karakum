@@ -1,6 +1,7 @@
 package com.karakum.base
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
@@ -17,6 +18,8 @@ abstract class BaseViewModel<S : Mvvm.State> : ViewModel() {
     val stateSubject: PublishSubject<S> = PublishSubject.create()
 
     val loadingSubject: PublishSubject<S> = PublishSubject.create()
+
+    val lifecycleScope = viewModelScope
 
     private var compositeDisposable: CompositeDisposable? = null
 
